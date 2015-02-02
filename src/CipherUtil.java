@@ -231,10 +231,10 @@ public final class CipherUtil extends CordovaPlugin{
       int totalBytesWritten = 0;
       while ((b = inputStream.read(d)) != -1) {
         fos.write(d, 0, b);
-        if (decryptAsyncTask != null) {
+        /*if (decryptAsyncTask != null) {
           totalBytesWritten += BUFFER_SIZE;
           decryptAsyncTask.updateProgress(totalBytesWritten);
-        }
+        }*/
       }
       fos.flush();
       fos.close();
