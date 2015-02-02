@@ -36,7 +36,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Base64;
 
-import com.diona.socialworker.app.SocialWorkerSharedPreferences;
+// import com.diona.socialworker.app.SocialWorkerSharedPreferences;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -281,8 +281,8 @@ public final class CipherUtil extends CordovaPlugin{
    */
   private SecretKeySpec getSecretKey(final Context context) throws NoSuchAlgorithmException, InvalidKeySpecException,
       UnsupportedEncodingException {
-    final SocialWorkerSharedPreferences sharedPreferences = SocialWorkerSharedPreferences.getInstance();
-    if (sharedPreferences.getSecretKey() == null) {
+    // final SocialWorkerSharedPreferences sharedPreferences = SocialWorkerSharedPreferences.getInstance();
+    // if (sharedPreferences.getSecretKey() == null) {
       final byte[] salt = generateRandomKeyBytes(SALT_LENGTH);
       final SecretKeyFactory factory = SecretKeyFactory.getInstance(SECRET_KEY_ALGORITHM);
       final PBEKeySpec spec = new PBEKeySpec(SECRET_KEY_PASSPHRASE.toCharArray(), salt, KEY_ITERATIONS, KEY_SIZE);
@@ -290,11 +290,11 @@ public final class CipherUtil extends CordovaPlugin{
       final SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getEncoded(), ENCRYPTION_ALGORITHM);
 
       // Set the value of the secret key in private shared preferences
-      sharedPreferences.setSecretKey(secretKeySpec);
+      //sharedPreferences.setSecretKey(secretKeySpec);
       return secretKeySpec;
-    } else {
+    /*} else {
       return sharedPreferences.getSecretKey();
-    }
+    }*/
   }
 
   /**
@@ -303,21 +303,21 @@ public final class CipherUtil extends CordovaPlugin{
    * @return the initialization vector.
    */
   private byte[] getIV(final Context context) {
-    final SocialWorkerSharedPreferences sharedPreferences = SocialWorkerSharedPreferences.getInstance();
-    if (sharedPreferences.getIV() == null) {
+    // final SocialWorkerSharedPreferences sharedPreferences = SocialWorkerSharedPreferences.getInstance();
+    // if (sharedPreferences.getIV() == null) {
       try {
         final SecureRandom random = new SecureRandom();
         final byte[] iv = new byte[IV_LENGTH];
         random.nextBytes(iv);
-        sharedPreferences.setIV(iv);
+        // sharedPreferences.setIV(iv);
         return iv;
       } catch (final Exception e) {
         LogUtil.error(TAG, "" + e.getMessage(), e);
         return null;
       }
-    } else {
-      return sharedPreferences.getIV();
-    }
+    // } else {
+    //   return sharedPreferences.getIV();
+    // }
   }
 
   /**
