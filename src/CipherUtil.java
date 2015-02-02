@@ -30,7 +30,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.commons.io.FileUtils;
+// import org.apache.commons.io.FileUtils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -254,7 +254,7 @@ public final class CipherUtil extends CordovaPlugin{
    *          The context for decryption.
    * @return A byte array of the decrypted file contents.
    */
-  public byte[] decryptFile(final String filePath, final Context context) {
+  /*public byte[] decryptFile(final String filePath, final Context context) {
     try {
       // Check if the file exists
       final File encryptedFile = new File(filePath);
@@ -268,7 +268,7 @@ public final class CipherUtil extends CordovaPlugin{
     } catch (final IOException e) {
       throw new RuntimeException("Exception occurred trying to decrypt file: " + filePath, e);
     }
-  }
+  }*/
 
   /**
    * Generates the secret key to be used for encryption. The secret key is retrieved from the shared preferences if
