@@ -111,7 +111,7 @@ public final class CipherUtil extends CordovaPlugin{
       cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
       encryptedTextBytes = cipher.doFinal(bytes);
     } catch (final Exception e) {
-      log.e(TAG, e);
+      // log.e(TAG, e);
     }
     return encryptedTextBytes;
   }
@@ -140,7 +140,7 @@ public final class CipherUtil extends CordovaPlugin{
       decryptedTextBytes = cipher.doFinal(bytes);
 
     } catch (final Exception e) {
-      log.e(TAG, e);
+      // log.e(TAG, e);
     }
     return decryptedTextBytes;
   }
@@ -191,7 +191,7 @@ public final class CipherUtil extends CordovaPlugin{
       outputStream.close();
       fis.close();
     } catch (final Exception e) {
-      log.e(TAG, e);
+      // log.e(TAG, e);
     }
   }
 
@@ -240,7 +240,7 @@ public final class CipherUtil extends CordovaPlugin{
       fos.close();
       inputStream.close();
     } catch (final Exception e) {
-      log.e(TAG, e);
+      // log.e(TAG, e);
     }
   }
 
@@ -311,7 +311,7 @@ public final class CipherUtil extends CordovaPlugin{
         // sharedPreferences.setIV(iv);
         return iv;
       } catch (final Exception e) {
-        log.e(TAG, "" + e.getMessage(), e);
+        // log.e(TAG, "" + e.getMessage(), e);
         return null;
       }
     // } else {
@@ -337,7 +337,7 @@ public final class CipherUtil extends CordovaPlugin{
       final SecretKey secretKey = keyGenerator.generateKey();
       randomKey = secretKey.getEncoded();
     } catch (final NoSuchAlgorithmException e) {
-      log.e(TAG, "Exception generating random key", e);
+      // log.e(TAG, "Exception generating random key", e);
     }
 
     return randomKey;
