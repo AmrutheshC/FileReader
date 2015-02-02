@@ -207,8 +207,7 @@ public final class CipherUtil extends CordovaPlugin{
    * @param decryptAsyncTask
    *          the AsyncTask that calls this method and needs to be updated. Ignored if null.
    */
-  public void decryptFile(final String path, final String decryptedPath, final Context context,
-      final DecryptFileAsyncTask decryptAsyncTask) {
+  public void decryptFile(final String path, final String decryptedPath, final Context context) {
 
     // Transaction.checkLongRunningProcessing("decryptFile");
 
