@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    id="com.diona.fileReader"
+    version="0.1.0">
+    <name>File Reader</name>
+    <description>Cordova File Reader Plugin</description>
+    <author>Diona Technologies</author>
+    <license>MIT</license>
+    <keywords>phonegap,filereader,cordova</keywords>
+    
+    <!-- <engines>
+        <engine name="cordova" version="3.6.0" />
+    </engines> -->
+
+    <js-module src="www/FileReader.js" name="FileReader">
+        <clobbers target="window.fileReader" />
+    </js-module>
+ 
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="FileReader">
+                <param name="android-package" value="com.diona.fileReader.FileReader"/>
+            </feature>
+        </config-file>
+ 
+        <source-file src="src/CipherUtil.java" target-dir="src/com/diona/fileReader" />      
+     </platform>          
+</plugin>
