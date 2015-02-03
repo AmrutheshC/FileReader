@@ -7,7 +7,7 @@
  * and shall use it only in accordance with the terms of the license agreement you
  * entered into with Diona.
  */
-// package com.diona.socialworkerhybrid.app.cipherUtil;
+package com.diona.fileReader.cipherUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
