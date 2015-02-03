@@ -14,7 +14,7 @@
     </engines> -->
 
     <js-module src="www/FileReader.js" name="FileReader">
-        <clobbers target="fileReader" />
+        <clobbers target="mediaFileReader" />
     </js-module>
  
     <!-- android -->
