@@ -35,7 +35,7 @@ import javax.crypto.spec.SecretKeySpec;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Base64;
-import android.util.log;
+import android.util.Log;
 
 // import com.diona.socialworker.app.SocialWorkerSharedPreferences;
 
