@@ -41,6 +41,8 @@ import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaInterface cordova;
+import org.apache.cordova.CordovaWebView webView;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
