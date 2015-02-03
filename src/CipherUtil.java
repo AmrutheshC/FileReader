@@ -112,7 +112,7 @@ public final class CipherUtil extends CordovaPlugin{
       cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
       encryptedTextBytes = cipher.doFinal(bytes);
     } catch (final Exception e) {
-      log.e(TAG, e);
+      Log.e(TAG, e);
     }
     return encryptedTextBytes;
   }
@@ -141,7 +141,7 @@ public final class CipherUtil extends CordovaPlugin{
       decryptedTextBytes = cipher.doFinal(bytes);
 
     } catch (final Exception e) {
-      log.e(TAG, e);
+      Log.e(TAG, e);
     }
     return decryptedTextBytes;
   }
@@ -192,7 +192,7 @@ public final class CipherUtil extends CordovaPlugin{
       outputStream.close();
       fis.close();
     } catch (final Exception e) {
-      log.e(TAG, e);
+      Log.e(TAG, e);
     }
   }
 
@@ -241,7 +241,7 @@ public final class CipherUtil extends CordovaPlugin{
       fos.close();
       inputStream.close();
     } catch (final Exception e) {
-      log.e(TAG, e);
+      Log.e(TAG, e);
     }
   }
 
@@ -312,7 +312,7 @@ public final class CipherUtil extends CordovaPlugin{
         // sharedPreferences.setIV(iv);
         return iv;
       } catch (final Exception e) {
-        log.e(TAG, "" + e.getMessage(), e);
+        Log.e(TAG, "" + e.getMessage(), e);
         return null;
       }
     // } else {
@@ -338,7 +338,7 @@ public final class CipherUtil extends CordovaPlugin{
       final SecretKey secretKey = keyGenerator.generateKey();
       randomKey = secretKey.getEncoded();
     } catch (final NoSuchAlgorithmException e) {
-      log.e(TAG, "Exception generating random key", e);
+      Log.e(TAG, "Exception generating random key", e);
     }
 
     return randomKey;
@@ -372,12 +372,17 @@ public final class CipherUtil extends CordovaPlugin{
        callbackContext.success();
        return true;*/
        //TODO:Encrypt the file
+       System.err.println("Action is encryption: " + action);
+       callbackContext.success();
     }
     else if (ACTION_DECRYPT_FILE.equals(action)){
       //TODO:Decrypt the file
+      System.err.println("Action is decryption: " + action);
+      callbackContext.success();
+    } else{
+      callbackContext.error("Invalid action");
+      return false;
     }
-    callbackContext.error("Invalid action");
-    return false;
 } catch(Exception e) {
     System.err.println("Exception: " + e.getMessage());
     callbackContext.error(e.getMessage());
