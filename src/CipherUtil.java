@@ -358,36 +358,34 @@ public final class CipherUtil extends CordovaPlugin{
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     try {
-    if (ACTION_ENCRYPT_FILE.equals(action)) { 
-             /*JSONObject arg_object = args.getJSONObject(0);
-             Intent calIntent = new Intent(Intent.ACTION_EDIT)
-        .setType("vnd.android.cursor.item/event")
-        .putExtra("beginTime", arg_object.getLong("startTimeMillis"))
-        .putExtra("endTime", arg_object.getLong("endTimeMillis"))
-        .putExtra("title", arg_object.getString("title"))
-        .putExtra("description", arg_object.getString("description"))
-        .putExtra("eventLocation", arg_object.getString("eventLocation"));
- 
-       this.cordova.getActivity().startActivity(calIntent);
-       callbackContext.success();
-       return true;*/
-       //TODO:Encrypt the file
-       System.err.println("Action is encryption: " + action);
-       callbackContext.success();
-    }
-    else if (ACTION_DECRYPT_FILE.equals(action)){
-      //TODO:Decrypt the file
-      System.err.println("Action is decryption: " + action);
-      callbackContext.success();
-    } else{
+      if (ACTION_ENCRYPT_FILE.equals(action)) { 
+               /*JSONObject arg_object = args.getJSONObject(0);
+               Intent calIntent = new Intent(Intent.ACTION_EDIT)
+          .setType("vnd.android.cursor.item/event")
+          .putExtra("beginTime", arg_object.getLong("startTimeMillis"))
+          .putExtra("endTime", arg_object.getLong("endTimeMillis"))
+          .putExtra("title", arg_object.getString("title"))
+          .putExtra("description", arg_object.getString("description"))
+          .putExtra("eventLocation", arg_object.getString("eventLocation"));
+   
+         this.cordova.getActivity().startActivity(calIntent);
+         callbackContext.success();
+         return true;*/
+         //TODO:Encrypt the file
+         System.err.println("Action is encryption: " + action);
+         callbackContext.success();
+      }
+      else if (ACTION_DECRYPT_FILE.equals(action)){
+        //TODO:Decrypt the file
+        System.err.println("Action is decryption: " + action);
+        callbackContext.success();
+      } 
       callbackContext.error("Invalid action");
       return false;
-    }
-} catch(Exception e) {
-    System.err.println("Exception: " + e.getMessage());
-    callbackContext.error(e.getMessage());
-    return false;
-} 
+    } catch(Exception e) {
+        System.err.println("Exception: " + e.getMessage());
+        callbackContext.error(e.getMessage());
+        return false;
+    } 
   }
-
 }
