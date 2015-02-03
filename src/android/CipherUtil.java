@@ -72,6 +72,10 @@ public final class CipherUtil extends CordovaPlugin{
     // Do nothing
   }
 
+  public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+		super.initialize(cordova, webView);
+		Log.v(TAG,"Init File Reader plugin");
+	}
   /**
    * 
    * @return an instance
