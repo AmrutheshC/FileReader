@@ -25,6 +25,6 @@
             </feature>
         </config-file>
  
-        <source-file src="src/CipherUtil.java" target-dir="src/com/diona/fileReader" />      
+        <source-file src="src/android/CipherUtil.java" target-dir="src/com/diona/fileReader" />      
      </platform>          
 </plugin>
