@@ -112,7 +112,7 @@ public final class CipherUtil extends CordovaPlugin{
       cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
       encryptedTextBytes = cipher.doFinal(bytes);
     } catch (final Exception e) {
-      Log.e(TAG, e);
+      Log.e(TAG, ""+e);
     }
     return encryptedTextBytes;
   }
@@ -141,7 +141,7 @@ public final class CipherUtil extends CordovaPlugin{
       decryptedTextBytes = cipher.doFinal(bytes);
 
     } catch (final Exception e) {
-      Log.e(TAG, e);
+      Log.e(TAG, "e"+e);
     }
     return decryptedTextBytes;
   }
@@ -192,7 +192,7 @@ public final class CipherUtil extends CordovaPlugin{
       outputStream.close();
       fis.close();
     } catch (final Exception e) {
-      Log.e(TAG, e);
+      Log.e(TAG, "e"+e);
     }
   }
 
@@ -241,7 +241,7 @@ public final class CipherUtil extends CordovaPlugin{
       fos.close();
       inputStream.close();
     } catch (final Exception e) {
-      Log.e(TAG, e);
+      Log.e(TAG, "e"+e);
     }
   }
 
