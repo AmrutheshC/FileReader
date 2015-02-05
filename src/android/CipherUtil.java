@@ -390,6 +390,7 @@ public final class CipherUtil extends CordovaPlugin{
       else if (ACTION_DECRYPT_FILE.equals(action)){
         //TODO:Decrypt the file
         System.err.println("Action is decryption: " + action);
+        decryptFile(arg_object.getString("location"),arg_object.getString("location"),null);
         callbackContext.success();
       } 
       callbackContext.error("Invalid action");
