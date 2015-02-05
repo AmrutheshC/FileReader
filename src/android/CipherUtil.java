@@ -75,9 +75,9 @@ public final class CipherUtil extends CordovaPlugin{
   }
 
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-		super.initialize(cordova, webView);
-		Log.v(TAG,"Init File Reader plugin");
-	}
+    super.initialize(cordova, webView);
+    Log.v(TAG,"Init File Reader plugin");
+  }
   /**
    * 
    * @return an instance
@@ -377,8 +377,14 @@ public final class CipherUtil extends CordovaPlugin{
          this.cordova.getActivity().startActivity(calIntent);
          callbackContext.success();
          return true;*/
+
+         JSONObject arg_object = args.getJSONObject(0);
+         
+
          //TODO:Encrypt the file
          System.err.println("Action is encryption: " + action);
+         System.err.println("URL: " + arg_object.getString("location"));
+         encryptFile(arg_object.getString("location"),arg_object.getString("location"),null);
          callbackContext.success();
       }
       else if (ACTION_DECRYPT_FILE.equals(action)){
