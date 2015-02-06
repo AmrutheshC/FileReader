@@ -211,9 +211,9 @@ public final class CipherUtil extends CordovaPlugin{
       
       //System.err.println("EN - 8");
       Date d2 = new Date();
-      System.err.println("File encrypted SUCCESSFULLY ");
       long diff = d2.getTime() - d1.getTime();
       long diffSeconds = diff / 1000 % 60;
+      System.err.println("File encrypted SUCCESSFULLY. Time = "+diffSeconds);
       return diffSeconds;
       //decryptFile(encryptPath, encryptPath+"_decrypted", null);
     } catch (final Exception e) {
@@ -275,9 +275,9 @@ public final class CipherUtil extends CordovaPlugin{
       inputStream.close();
       
       Date d2 = new Date();
-      System.err.println("File decrypted SUCCESSFULLY ");
       long diff = d2.getTime() - d1.getTime();
       long diffSeconds = diff / 1000 % 60;
+      System.err.println("File decrypted SUCCESSFULLY. Time = "+diffSeconds);
       return diffSeconds;
     } catch (final Exception e) {
       Log.e(TAG, "e"+e);
