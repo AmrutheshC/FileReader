@@ -71,7 +71,7 @@ public final class CipherUtil extends CordovaPlugin{
   private static final int SALT_LENGTH = 20;
 
   private byte[] usedIV = new byte[IV_LENGTH];
-  private byte[] usedSecretKey = new byte[SALT_LENGTH];
+  private SecretKeySpec usedSecretKey = null;
 
   public CipherUtil() {
     // Do nothing
