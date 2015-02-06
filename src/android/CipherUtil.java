@@ -232,7 +232,7 @@ public final class CipherUtil extends CordovaPlugin{
         // Decrypt the message
         final Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
         // cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(getIV(context)));
-        cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(usedIV);
+        cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(usedIV));
         inputStream = new CipherInputStream(fis, cipher);
       } else {
         inputStream = fis;
