@@ -168,6 +168,7 @@ public final class CipherUtil extends CordovaPlugin{
    *          path of the encrypted file.
    */
   public long encryptFile(final String path, final String encryptPath, final Context context) {
+    long empty = 123456789L;
     Date d1 = new Date();
     // Transaction.checkLongRunningProcessing("encryptFile");
     //System.err.println("Path = "+path);
@@ -219,7 +220,7 @@ public final class CipherUtil extends CordovaPlugin{
       //decryptFile(encryptPath, encryptPath+"_decrypted", null);
     } catch (final Exception e) {
       Log.e(TAG, "e"+e);
-      return null;
+      return empty;
     }
   }
 
@@ -236,6 +237,7 @@ public final class CipherUtil extends CordovaPlugin{
    *          the AsyncTask that calls this method and needs to be updated. Ignored if null.
    */
   public long decryptFile(final String path, final String decryptedPath, final Context context) {
+    long empty = 123456789L;
     Date d1 = new Date();
     // Transaction.checkLongRunningProcessing("decryptFile");
     //System.err.println("Path = "+path);
@@ -282,7 +284,7 @@ public final class CipherUtil extends CordovaPlugin{
       return diffSeconds;
     } catch (final Exception e) {
       Log.e(TAG, "e"+e);
-      return null;
+      return empty;
     }
   }
 
@@ -402,7 +404,7 @@ public final class CipherUtil extends CordovaPlugin{
       JSONObject arg_object = args.getJSONObject(0);
       System.err.println("Action is : " + action);
       System.err.println("URL: " + arg_object.getString("location"));
-      final string fileLoc = arg_object.getString("location");
+      final String fileLoc = arg_object.getString("location");
       if (ACTION_ENCRYPT_FILE.equals(action)) {
          long time = encryptFile(fileLoc,fileLoc+"_encrypted",null);
          callbackContext.success();
