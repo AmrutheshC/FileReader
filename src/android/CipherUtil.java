@@ -36,6 +36,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Date;
 
 // import com.diona.socialworker.app.SocialWorkerSharedPreferences;
 
@@ -404,11 +405,11 @@ public final class CipherUtil extends CordovaPlugin{
       final string fileLoc = arg_object.getString("location");
       if (ACTION_ENCRYPT_FILE.equals(action)) {
          long time = encryptFile(fileLoc,fileLoc+"_encrypted",null);
-         callbackContext.success(time);
+         callbackContext.success();
       }
       else if (ACTION_DECRYPT_FILE.equals(action)){
         long time = decryptFile(fileLoc+"_encrypted",fileLoc+"_decrypted",null);
-        callbackContext.success(time);
+        callbackContext.success();
       } 
       callbackContext.error("Invalid action");
       return false;
