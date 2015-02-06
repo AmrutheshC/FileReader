@@ -72,6 +72,7 @@ public final class CipherUtil extends CordovaPlugin{
 
   public byte[] usedIV = new byte[IV_LENGTH];
   public SecretKeySpec usedSecretKey = null;
+  public IvParameterSpec ivspec = null;
 
   public CipherUtil() {
     // Do nothing
@@ -170,39 +171,47 @@ public final class CipherUtil extends CordovaPlugin{
     // Transaction.checkLongRunningProcessing("encryptFile");
     System.err.println("Path = "+path);
     System.err.println("encryptPath = "+encryptPath);
+    final string encryptionPath = encryptPath+"_encrypted";
     try {
+      System.err.println("EN - 1");
       // Here you read the cleartext.
       final FileInputStream fis = new FileInputStream(path);
       // This stream write the encrypted text. This stream will be wrapped by another stream.
-      final FileOutputStream fos = new FileOutputStream(encryptPath);
+      final FileOutputStream fos = new FileOutputStream(encryptionPath);
 
       final OutputStream outputStream;
       if (ENCRYPTION_ENABLED) {
+        System.err.println("EN - 2");
         final SecretKeySpec secret = usedSecretKey = getSecretKey(context);
         final byte[] ivBytes = usedIV = getIV(context);
-        final IvParameterSpec ivspec = new IvParameterSpec(ivBytes);
+        ivspec = new IvParameterSpec(ivBytes);
+        System.err.println("EN - 3");
         // Create cipher
         final Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secret, ivspec);
-
+        System.err.println("EN - 4");
         // Wrap the output stream
         outputStream = new CipherOutputStream(fos, cipher);
+        System.err.println("EN - 5");
       } else {
         outputStream = fos;
       }
 
       // Write bytes
       int b;
+      System.err.println("EN - 6");
       final byte[] d = new byte[BUFFER_SIZE];
       while ((b = fis.read(d)) != -1) {
         outputStream.write(d, 0, b);
       }
+      System.err.println("EN - 7");
       // Flush and close streams.
       outputStream.flush();
       outputStream.close();
       fis.close();
+      System.err.println("EN - 8");
       System.err.println("File encrypted SUCCESSFULLY ");
-      decryptFile(path, encryptPath, null);
+      decryptFile(encryptionPath, encryptPath+"_decrypted", null);
     } catch (final Exception e) {
       Log.e(TAG, "e"+e);
     }
@@ -231,13 +240,17 @@ public final class CipherUtil extends CordovaPlugin{
 
       final InputStream inputStream;
       if (ENCRYPTION_ENABLED) {
+        System.err.println("DE - 1");
 //        final SecretKeySpec secret = getSecretKey(context);
         final SecretKeySpec secret = usedSecretKey;
         // Decrypt the message
         final Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
+        System.err.println("DE - 2");
         // cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(getIV(context)));
-        cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(usedIV));
+        cipher.init(Cipher.DECRYPT_MODE, secret, ivspec);
+        System.err.println("DE - 3");
         inputStream = new CipherInputStream(fis, cipher);
+        System.err.println("DE - 4");
       } else {
         inputStream = fis;
       }
@@ -374,22 +387,8 @@ public final class CipherUtil extends CordovaPlugin{
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     try {
-      if (ACTION_ENCRYPT_FILE.equals(action)) { 
-               /*JSONObject arg_object = args.getJSONObject(0);
-               Intent calIntent = new Intent(Intent.ACTION_EDIT)
-          .setType("vnd.android.cursor.item/event")
-          .putExtra("beginTime", arg_object.getLong("startTimeMillis"))
-          .putExtra("endTime", arg_object.getLong("endTimeMillis"))
-          .putExtra("title", arg_object.getString("title"))
-          .putExtra("description", arg_object.getString("description"))
-          .putExtra("eventLocation", arg_object.getString("eventLocation"));
-   
-         this.cordova.getActivity().startActivity(calIntent);
-         callbackContext.success();
-         return true;*/
-
+      if (ACTION_ENCRYPT_FILE.equals(action)) {
          JSONObject arg_object = args.getJSONObject(0);
-         
 
          //TODO:Encrypt the file
          System.err.println("Action is encryption: " + action);
