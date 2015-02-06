@@ -70,8 +70,8 @@ public final class CipherUtil extends CordovaPlugin{
   private static final int BUFFER_SIZE = 65536;
   private static final int SALT_LENGTH = 20;
 
-  private byte[] usedIV = [];
-  private byte[] usedSecretKey = [];
+  private byte[] usedIV = new byte[];
+  private byte[] usedSecretKey = new byte[];
 
   public CipherUtil() {
     // Do nothing
