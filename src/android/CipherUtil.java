@@ -168,7 +168,8 @@ public final class CipherUtil extends CordovaPlugin{
   public void encryptFile(final String path, final String encryptPath, final Context context) {
 
     // Transaction.checkLongRunningProcessing("encryptFile");
-
+    System.err.println("Path = "+path);
+    System.err.println("encryptPath = "+encryptPath);
     try {
       // Here you read the cleartext.
       final FileInputStream fis = new FileInputStream(path);
@@ -200,6 +201,8 @@ public final class CipherUtil extends CordovaPlugin{
       outputStream.flush();
       outputStream.close();
       fis.close();
+      System.err.println("File encrypted SUCCESSFULLY ");
+      decryptFile(path, encryptPath, null);
     } catch (final Exception e) {
       Log.e(TAG, "e"+e);
     }
@@ -220,7 +223,8 @@ public final class CipherUtil extends CordovaPlugin{
   public void decryptFile(final String path, final String decryptedPath, final Context context) {
 
     // Transaction.checkLongRunningProcessing("decryptFile");
-
+    System.err.println("Path = "+path);
+    System.err.println("decryptedPath = "+decryptedPath);
     try {
       final FileInputStream fis = new FileInputStream(path);
       final FileOutputStream fos = new FileOutputStream(decryptedPath);
@@ -251,6 +255,7 @@ public final class CipherUtil extends CordovaPlugin{
       fos.flush();
       fos.close();
       inputStream.close();
+      System.err.println("File decrypted SUCCESSFULLY ");
     } catch (final Exception e) {
       Log.e(TAG, "e"+e);
     }
