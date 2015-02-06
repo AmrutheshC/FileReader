@@ -58,7 +58,7 @@ public final class CipherUtil extends CordovaPlugin{
   public static final String ACTION_ENCRYPT_FILE = "encryptFile";
   public static final String ACTION_DECRYPT_FILE = "decryptFile";
   private static final boolean ENCRYPTION_ENABLED = true;
-  private static final String ENCRYPTION_ALGORITHM = "AES";
+  private static final String ENCRYPTION_ALGORITHM = "AES/CBC/PKCS5Padding";
   private static final String SECRET_KEY_ALGORITHM = "PBKDF2WithHmacSHA1";
   private static final int KEY_SIZE = 256;
   private static final int KEY_ITERATIONS = 1;
@@ -69,6 +69,9 @@ public final class CipherUtil extends CordovaPlugin{
   private static final int IV_LENGTH = 16;
   private static final int BUFFER_SIZE = 65536;
   private static final int SALT_LENGTH = 20;
+
+  private byte[] usedIV = "";
+  private byte[] usedSecretKey = "";
 
   public CipherUtil() {
     // Do nothing
@@ -174,8 +177,8 @@ public final class CipherUtil extends CordovaPlugin{
 
       final OutputStream outputStream;
       if (ENCRYPTION_ENABLED) {
-        final SecretKeySpec secret = getSecretKey(context);
-        final byte[] ivBytes = getIV(context);
+        final SecretKeySpec secret = usedSecretKey = getSecretKey(context);
+        final byte[] ivBytes = usedIV = getIV(context);
         final IvParameterSpec ivspec = new IvParameterSpec(ivBytes);
         // Create cipher
         final Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
@@ -224,10 +227,12 @@ public final class CipherUtil extends CordovaPlugin{
 
       final InputStream inputStream;
       if (ENCRYPTION_ENABLED) {
-        final SecretKeySpec secret = getSecretKey(context);
+//        final SecretKeySpec secret = getSecretKey(context);
+        final SecretKeySpec secret = usedSecretKey;
         // Decrypt the message
         final Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
-        cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(getIV(context)));
+        // cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(getIV(context)));
+        cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(usedIV);
         inputStream = new CipherInputStream(fis, cipher);
       } else {
         inputStream = fis;
@@ -390,8 +395,6 @@ public final class CipherUtil extends CordovaPlugin{
       else if (ACTION_DECRYPT_FILE.equals(action)){
         //TODO:Decrypt the file
         System.err.println("Action is decryption: " + action);
-        JSONObject arg_object = args.getJSONObject(0);
-        decryptFile(arg_object.getString("location"),arg_object.getString("location"),null);
         callbackContext.success();
       } 
       callbackContext.error("Invalid action");
