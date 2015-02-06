@@ -171,7 +171,7 @@ public final class CipherUtil extends CordovaPlugin{
     // Transaction.checkLongRunningProcessing("encryptFile");
     System.err.println("Path = "+path);
     System.err.println("encryptPath = "+encryptPath);
-    final string encryptionPath = encryptPath+"_encrypted";
+    final String encryptionPath = encryptPath+"_encrypted";
     try {
       System.err.println("EN - 1");
       // Here you read the cleartext.
