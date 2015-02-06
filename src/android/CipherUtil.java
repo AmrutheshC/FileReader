@@ -58,7 +58,7 @@ public final class CipherUtil extends CordovaPlugin{
   public static final String ACTION_ENCRYPT_FILE = "encryptFile";
   public static final String ACTION_DECRYPT_FILE = "decryptFile";
   private static final boolean ENCRYPTION_ENABLED = true;
-  private static final String ENCRYPTION_ALGORITHM = "AES/CBC/PKCS5Padding";
+  private static final String ENCRYPTION_ALGORITHM = "AES";
   private static final String SECRET_KEY_ALGORITHM = "PBKDF2WithHmacSHA1";
   private static final int KEY_SIZE = 256;
   private static final int KEY_ITERATIONS = 1;
